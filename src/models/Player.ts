@@ -1,7 +1,11 @@
+import data from "../data";
+
 export default class Player {
   money = 3000;
   fame = 0;
-  title = 0;
+  exp = 0;
+  titleLevel = 1;
+  actor = null;
 
   constructor() {}
 
@@ -17,11 +21,30 @@ export default class Player {
     this.fame += fame;
   };
 
+  addExp = (exp: integer): void => {
+    this.exp += exp;
+  };
+
+  removeExp = (exp: integer): void => {};
+
   removeFame = (fame: integer): void => {
     this.fame -= fame;
   };
 
-  buyTitle = (): void => {
-    this.title++;
+  addActor = (actor): void => {
+    this.actor = actor;
   };
+
+  buyTitle = (): void => {
+    const nextTitle = data.titles[this.titleLevel + 1];
+    if (this.money >= nextTitle.cost) {
+      this.titleLevel++;
+      this.removeMoney(nextTitle.cost);
+      this.addExp(nextTitle.experience);
+    }
+  };
+
+  get title(): {} {
+    return data.titles[this.titleLevel];
+  }
 }
