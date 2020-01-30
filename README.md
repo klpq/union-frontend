@@ -1,3 +1,1 @@
-# Town Generator
-
-Town generator based on Phaser
+# Economical Fun Game recreation
